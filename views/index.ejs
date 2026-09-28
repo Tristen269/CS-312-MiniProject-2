@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Cocktail</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Cocktail Roulette</h1>
+
+    <form action="/random" method="GET">
+      <button type="submit">Surprise Me!</button>
+    </form>
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <!-- only shows once a cocktail has been fetched -->
+    <% if (cocktail) { %>
+      <div class="card">
+        <h2><%= cocktail.name %></h2>
+        <img src="<%= cocktail.image %>" alt="<%= cocktail.name %>" />
+
+        <p class="details">
+          <%= cocktail.category %> | <%= cocktail.alcoholic %> | Serve in: <%= cocktail.glass %>
+        </p>
+
+        <h3>Ingredients</h3>
+        <ul>
+          <% cocktail.ingredients.forEach(function(item) { %>
+            <li><%= item.measure %> <%= item.name %></li>
+          <% }); %>
+        </ul>
+
+        <h3>Instructions</h3>
+        <p><%= cocktail.instructions %></p>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
