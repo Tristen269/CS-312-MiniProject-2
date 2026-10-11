@@ -7,38 +7,84 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+  <a class="badge" href="https://www.tiktok.com/@tristenbalist_14?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">Paid version coming soon</a>
   <div class="container">
     <h1>Cocktail Roulette</h1>
 
-    <form action="/random" method="GET">
-      <button type="submit">Surprise Me!</button>
-    </form>
+    <div class="actions">
+      <form action="/random" method="GET">
+        <button type="submit">Surprise Me!</button>
+      </form>
+
+      <button type="button" id="saves-tab" class="tab-btn" aria-label="Saves" title="Saves">
+        <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-5-6 5z" /></svg>
+      </button>
+    </div>
 
     <% if (error) { %>
       <p class="error"><%= error %></p>
     <% } %>
 
+    <% if (locals.limitReached) { %>
+      <p class="limit">That's one too many drinks for you. See you tomorrow!</p>
+    <% } %>
+
+    <div id="saves" class="<%= cocktail ? 'hidden' : '' %>">
+      <h2>My Saves</h2>
+      <div id="podium">
+        <div class="place">
+          <div class="drink" id="drink-1"></div>
+          <div class="pedestal silver">2</div>
+        </div>
+        <div class="place">
+          <div class="drink" id="drink-0"></div>
+          <div class="pedestal gold">1</div>
+        </div>
+        <div class="place">
+          <div class="drink" id="drink-2"></div>
+          <div class="pedestal bronze">3</div>
+        </div>
+      </div>
+
+      <div id="drink-details" class="hidden">
+        <h3 id="details-name"></h3>
+        <p id="details-meta" class="details"></p>
+        <h4>Ingredients</h4>
+        <ul id="details-ingredients"></ul>
+        <h4>Instructions</h4>
+        <p id="details-instructions"></p>
+        <button type="button" id="close-details">Close</button>
+      </div>
+    </div>
+
     <!-- only shows once a cocktail has been fetched -->
     <% if (cocktail) { %>
-      <div class="card">
-        <h2><%= cocktail.name %></h2>
-        <img src="<%= cocktail.image %>" alt="<%= cocktail.name %>" />
+      <div id="card-view">
+        <div class="card">
+          <h2><%= cocktail.name %></h2>
+          <img src="<%= cocktail.image %>" alt="<%= cocktail.name %>" />
 
-        <p class="details">
-          <%= cocktail.category %> | <%= cocktail.alcoholic %> | Serve in: <%= cocktail.glass %>
-        </p>
+          <p class="details">
+            <%= cocktail.category %> | <%= cocktail.alcoholic %> | Serve in: <%= cocktail.glass %>
+          </p>
 
-        <h3>Ingredients</h3>
-        <ul>
-          <% cocktail.ingredients.forEach(function(item) { %>
-            <li><%= item.measure %> <%= item.name %></li>
-          <% }); %>
-        </ul>
+          <h3>Ingredients</h3>
+          <ul>
+            <% cocktail.ingredients.forEach(function(item) { %>
+              <li><%= item.measure %> <%= item.name %></li>
+            <% }); %>
+          </ul>
 
-        <h3>Instructions</h3>
-        <p><%= cocktail.instructions %></p>
+          <h3>Instructions</h3>
+          <p><%= cocktail.instructions %></p>
+
+          <button id="save-btn" type="button" data-cocktail="<%= JSON.stringify(cocktail) %>">Save</button>
+          <p id="save-message"></p>
+        </div>
       </div>
     <% } %>
   </div>
+
+  <script src="/script.js"></script>
 </body>
 </html>

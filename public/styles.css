@@ -93,6 +93,219 @@ button:hover {
   line-height: 1.6;
 }
 
+#saves {
+  margin-top: 32px;
+}
+
+#saves h2 {
+  color: #ffd166;
+}
+
+#podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  padding-top: 20px;
+}
+
+.place {
+  flex: 1;
+  max-width: 180px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.drink {
+  min-height: 120px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.drink img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.drink-name {
+  margin: 6px 0;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.empty-text {
+  color: #5d5478;
+  font-size: 0.85rem;
+}
+
+.remove-btn {
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  border-radius: 12px;
+}
+
+.pedestal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.pedestal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+}
+
+.pedestal.gold {
+  height: 110px;
+  background: linear-gradient(180deg, #ffe27a, #d4a017);
+}
+
+.pedestal.silver {
+  height: 80px;
+  background: linear-gradient(180deg, #e6e6e6, #9a9a9a);
+}
+
+.pedestal.bronze {
+  height: 60px;
+  background: linear-gradient(180deg, #e0a070, #a0622d);
+}
+
+.place:nth-child(2) .drink::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.55), rgba(255, 209, 102, 0));
+  z-index: -1;
+}
+
+@media (max-width: 480px) {
+  #podium {
+    gap: 4px;
+  }
+  .place {
+    max-width: 110px;
+  }
+  .drink img {
+    width: 60px;
+    height: 60px;
+  }
+  .drink-name {
+    font-size: 0.75rem;
+  }
+  .pedestal {
+    font-size: 1.4rem;
+  }
+  .pedestal.gold {
+    height: 90px;
+  }
+  .pedestal.silver {
+    height: 65px;
+  }
+  .pedestal.bronze {
+    height: 50px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tab-btn {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid #ff6fb5;
+}
+
+.tab-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #ff6fb5;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.tab-btn.active {
+  background: #ff6fb5;
+}
+
+.tab-btn.active svg {
+  fill: #fff;
+  stroke: #fff;
+}
+
+.badge {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #ffd166;
+  background: #1e1a2b;
+  border: 1px solid #ffd166;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+a.badge {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+a.badge:hover {
+  background: #ffd166;
+  color: #1a1a1a;
+}
+
+.limit {
+  margin-top: 24px;
+  padding: 14px;
+  background: #2b2140;
+  border: 1px solid #ff6fb5;
+  border-radius: 8px;
+  color: #ffb3d9;
+  font-weight: bold;
+}
+
 /* smaller screens */
 @media (max-width: 480px) {
   h1 {
@@ -101,4 +314,34 @@ button:hover {
   .card {
     padding: 16px;
   }
+}
+
+#drink-details {
+  margin-top: 20px;
+  padding: 20px;
+  background: #1e1a2b;
+  border-radius: 16px;
+  text-align: left;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+#drink-details h3 {
+  color: #ffd166;
+  margin-top: 0;
+  text-align: center;
+}
+
+#drink-details h4 {
+  color: #ff6fb5;
+  border-bottom: 1px solid #2f2942;
+  padding-bottom: 6px;
+}
+
+#drink-details ul {
+  padding-left: 20px;
+  line-height: 1.8;
+}
+
+#close-details {
+  margin-top: 12px;
 }
